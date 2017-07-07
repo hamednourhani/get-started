@@ -1,1 +1,13 @@
+sudo: required
+
 language: python
+
+services:
+   - docker
+
+before_install:
+  - docker build -t itstarir/get-started .
+  - docker run -d -p 127.0.0.1:80:3000 itstarir/get-started /bin/sh -c "cd /app : python app.py;"
+
+scirpt:
+  - bundle exec rake test
